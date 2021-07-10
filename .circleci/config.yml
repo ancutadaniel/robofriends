@@ -8,8 +8,7 @@ jobs:
       - run:
           name: The First Step
           command: |
-            echo 'Hello World!'
-           
+            echo 'Hello World!'           
   build-two:
     docker:
       - image: alpine:3.7
@@ -19,9 +18,9 @@ jobs:
           name: The First Step
           command: |
             echo 'This is the delivery pipeline'
-  workflows:
-    version: 2
-    build-one_build-two:
-      jobs:
-        - build-one
-        - build-two
+workflows:
+  version: 2
+  build-one_build-two:
+    jobs:
+      - build-one
+      - build-two
