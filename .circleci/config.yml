@@ -1,26 +1,39 @@
 version: 2.1
 jobs:
-  build-one:
+  build:
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:8.9
     steps:
       - checkout
       - run:
           name: The First Step
           command: |
-            echo 'Hello World!'           
-  build-two:
+            echo 'Hello World!' 
+      - run: npm install
+      - run: CI=true npm run build
+  test:
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:8.9
     steps:
       - checkout
       - run:
           name: The Second Step
           command: |
             echo 'This is the delivery pipeline'
+      - run: npm install
+      - run: npm test
+  hithere:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "Hellllooo"      
 workflows:
   version: 2
-  build-one_build-two:
+  build_test_lint:
     jobs:
-      - build-one
-      - build-two
+      - build
+      - hithere
+      - test:
+          requires:
+            - hithere
