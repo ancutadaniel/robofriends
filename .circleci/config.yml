@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:16.4.2
     steps:
       - checkout
       - run:
@@ -13,7 +13,7 @@ jobs:
       - run: CI=true npm run build
   test:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:16.4.2
     steps:
       - checkout
       - run:
@@ -24,11 +24,11 @@ jobs:
       - run: npm test
   hithere:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:16.4.2
     steps:
       - checkout
       - run:
-          name: The Third Step
+          name: The Second Step
           command: |
             echo 'Hello'      
 workflows:
