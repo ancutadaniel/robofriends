@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: The First Step
+          name: The Second Step
           command: |
             echo 'This is the delivery pipeline'
 workflows:
